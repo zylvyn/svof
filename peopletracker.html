@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Svof People Tracker &mdash; Svof docs</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'test2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Svof docs" href="index.html" />
+    <link rel="next" title="Svof Priest Healer" href="priesthealing.html" />
+    <link rel="prev" title="Svof Corpse stuff" href="offering.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="priesthealing.html" title="Svof Priest Healer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="offering.html" title="Svof Corpse stuff"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="svof-people-tracker">
+<h1>Svof People Tracker<a class="headerlink" href="#svof-people-tracker" title="Permalink to this headline">¶</a></h1>
+<p>Just use any of the people-locating methods - sense, wholist, fly/view, alertness, trace - it&#8217;ll plot people on your map.</p>
+<p>You can disable it or easily change color of labels in it&#8217;s <strong>vconfig2</strong> menu entry, along with the size of the labels.</p>
+<p>The script works in tandem with the <a class="reference external" href="http://wiki.mudlet.org/w/IRE_mapping_script#Download">Mudlet Mapper script</a>, and thus the latest version is required - or <strong>12.5.10 at minimum</strong>!</p>
+<ul class="simple">
+<li>if it&#8217;s not possible to tell where exactly a person is, like when they&#8217;re in a room with a non-unique name, then it&#8217;ll put identifiers into all rooms that match and only put the list of people in the right-most room. This seems the best way to deal with this problem so far, but if you have better ideas let me know</li>
+</ul>
+<div class="section" id="comprehensive-guide-to-setting-this-up">
+<h2>Comprehensive guide to setting this up<a class="headerlink" href="#comprehensive-guide-to-setting-this-up" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><strong>Get the map open</strong> - press the Map button in Mudlet or <em>Toolbox → Show map</em> to spawn it. If you&#8217;d always like the map showing, <a class="reference external" href="http://wiki.mudlet.org/w/Mudlet_Mapper">this script</a> will help you do that. Don&#8217;t worry if the map doens&#8217;t track you / says invalid position or etc right now.</li>
+<li><strong>Get the mapper script</strong> - <a class="reference external" href="http://wiki.mudlet.org/w/IRE_mapping_script">go here</a> and install this script. If you already have it, remove it and install it - it is updated very often. After you install it, reconnect - that way it will know you&#8217;re connected to Achaea, and not another game.</li>
+<li><strong>Get the map</strong> - after you reconnected, do <em>mconfig crowdmap on</em>. It will download a map if you don&#8217;t have one. After it downloads, you should be able to walk around and it will visually track you on the map.</li>
+<li><strong>Done</strong> - steps 1-3 were really just a trick to get your map working. The peopletracker works automatically and without fuss, you&#8217;re done. See below on useful aliases to know.</li>
+</ol>
+<div class="section" id="aliases">
+<h3>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h3>
+<dl class="glossary docutils">
+<dt id="term-qwho">qwho</dt>
+<dd>Scans the who list and plots people on the map wherever they are. Doesn&#8217;t spam you with wholist and does it quietly.</dd>
+<dt id="term-qwhom">qwhom</dt>
+<dd>Scans the who list and shows you a nice menu of where everyone is - broken down by area and room. Plots people on the map as well - all qwho variants do.</dd>
+<dt id="term-qwho-area">qwho &lt;area&gt;</dt>
+<dd>Scans the who list and shows you all people in that area only.</dd>
+<dt id="term-qwhog">qwhog</dt>
+<dd>Scans the wholist and shows you groups of 2+ people only.</dd>
+<dt id="term-qwhow">qwhow</dt>
+<dd>Scans the wholist and only shows you people that are on your watchfor list.</dd>
+<dt id="term-vconfig-watchfor-person">vconfig watchfor &lt;person&gt;</dt>
+<dd>Adds or removes a person on the watchfor list - used in qwhow. You can script this as well - put the name down as a key in the <tt class="docutils literal"><span class="pre">svo.me.watchfor</span></tt> table. To remove a name, set it to nil (not false).</dd>
+<dt id="term-vshow-watchfor">vshow watchfor</dt>
+<dd>Lists the people on your watchfor list.</dd>
+<dt id="term-vconfig-labelsize-font-size">vconfig labelsize &lt;font size&gt;</dt>
+<dd>Sets the size of the labels to use on the map. Default size is 10.</dd>
+<dt id="term-ppin-area">ppin &lt;area&gt;</dt>
+<dd>Reports where all the people in the area are to the ccto output - default is party, and you can adjust it with vconfig ccto. Use one of the qwho aliases to refresh this information, or one of the locating abilities you have.</dd>
+<dt id="term-ppwith-person">ppwith &lt;person&gt;</dt>
+<dd>Reports all the companions of a person to the ccto output (see above). It also echoes it back to you, so you can see this in case you aren&#8217;t in a party.</dd>
+<dt id="term-ppof-city">ppof &lt;city&gt;</dt>
+<dd>Reports all citizens of a particular city that are online and are visible on qw (so ungemmed).</dd>
+<dt id="term-gotop">gotop</dt>
+<dd>Walks over to where your target (as defined by the &#8216;target&#8217; variable) was known to be last.</dd>
+<dt id="term-gotop-person">gotop &lt;person&gt;</dt>
+<dd>Walks over to where the person was known to be last.</dd>
+<dt id="term-gotop-flag-gotop-hill">gotop flag, gotop hill</dt>
+<dd>In a KoTH, walks over to the flag or the hill - use <em>es &lt;arena&gt;</em> to update where the location is.</dd>
+<dt id="term-mstop">mstop</dt>
+<dd>stops walking from goto and gotop.</dd>
+<dt id="term-alertness-on">alertness on</dt>
+<dd>Plots people adjacent to you and in your room as they move around.</dd>
+<dt id="term-angel-demon-presences">angel/demon presences</dt>
+<dd>Plots everybody in the area on the map!</dd>
+<dt id="term-class-locating-ability">&lt;class locating ability&gt;</dt>
+<dd>Plots that invididual on the map as you locate them.</dd>
+<dt id="term-farsee-person">farsee &lt;person&gt;</dt>
+<dd>If the person is in the same area as you, it&#8217;ll plot them on the map.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Svof People Tracker</a><ul>
+<li><a class="reference internal" href="#comprehensive-guide-to-setting-this-up">Comprehensive guide to setting this up</a><ul>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="offering.html"
+                        title="previous chapter">Svof Corpse stuff</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="priesthealing.html"
+                        title="next chapter">Svof Priest Healer</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/peopletracker.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="priesthealing.html" title="Svof Priest Healer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="offering.html" title="Svof Corpse stuff"
+             >previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Vadim Peretokin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

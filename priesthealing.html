@@ -1,0 +1,137 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Svof Priest Healer &mdash; Svof docs</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'test2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Svof docs" href="index.html" />
+    <link rel="next" title="Svof Multi-Person Priest Limbcounter" href="priestlimbcounter.html" />
+    <link rel="prev" title="Svof People Tracker" href="peopletracker.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="priestlimbcounter.html" title="Svof Multi-Person Priest Limbcounter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="peopletracker.html" title="Svof People Tracker"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="svof-priest-healer">
+<h1>Svof Priest Healer<a class="headerlink" href="#svof-priest-healer" title="Permalink to this headline">¶</a></h1>
+<p>This addon allows Priests to cure other people and enemies. Svof already comes with Healing use for yourself (and several nice modes of integrating Healing into your normal curing while at it), this enables you to cure others.</p>
+<p>The script does rely on some features of the Svof Priest system, so it is necessary to have. It also takes available open channels into account and won&#8217;t try to cure afflictions that you can&#8217;t due to channels not being opened.</p>
+<p>The script <em>does</em> take into account which channels do you have open that you can heal with - so make sure you have all channels open if you&#8217;d like to be able to cure most afflictions!</p>
+<div class="section" id="aliases">
+<h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-cre-ally">cre &lt;ally&gt;</dt>
+<dd>Diagnoses and cures one affliction off a person. If you&#8217;d like to cure them again, use <tt class="docutils literal"><span class="pre">cre</span></tt> again. It will use your aeon/retardation priorities to prioritize which affliction to cure first.</dd>
+<dt id="term-cre-list-of-allies">cre &lt;list of allies&gt;</dt>
+<dd><p class="first">Diagnoses and cures a whole lot of people at once (ie cre person1 person1 person3 ...). Make sure you use the full names - anti-illusion is in place to prevent you from getting tricked into healing someone else. You can spam this (as long as you have mana!) to cure allies with whatever you can - one affliction at a time from the whole group.</p>
+<p class="last">Don&#8217;t use this on yourself, use dv instead.</p>
+</dd>
+<dt id="term-crc-enemy-or-list-of-enemies">crc &lt;enemy or list of enemies&gt;</dt>
+<dd>Heals an enemies of deaf, blindness and insomnia.</dd>
+<dt id="term-crc">crc</dt>
+<dd>Heals whoever is targetted by the &#8216;target&#8217; variable.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Svof Priest Healer</a><ul>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="peopletracker.html"
+                        title="previous chapter">Svof People Tracker</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="priestlimbcounter.html"
+                        title="next chapter">Svof Multi-Person Priest Limbcounter</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/priesthealing.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="priestlimbcounter.html" title="Svof Multi-Person Priest Limbcounter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="peopletracker.html" title="Svof People Tracker"
+             >previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Vadim Peretokin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

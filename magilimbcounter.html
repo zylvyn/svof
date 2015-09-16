@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Svof Multi-Person Magi Limbcounter &mdash; Svof docs</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'test2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Svof docs" href="index.html" />
+    <link rel="next" title="Svof Multi-Person Meta Limbcounter" href="metalimbcounter.html" />
+    <link rel="prev" title="Svof Multi-Person Knight Limbcounter" href="knightlimbcounter.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="metalimbcounter.html" title="Svof Multi-Person Meta Limbcounter"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="knightlimbcounter.html" title="Svof Multi-Person Knight Limbcounter"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="svof-multi-person-magi-limbcounter">
+<h1>Svof Multi-Person Magi Limbcounter<a class="headerlink" href="#svof-multi-person-magi-limbcounter" title="Permalink to this headline">¶</a></h1>
+<p>The magi limbcounter automatically tracks whomever you are hitting, and tells you their limb status after each hit - along with any limbs that are prepped, if any.</p>
+<p>It also has a feature of showing the last hit opponents limb status on the prompt - to use this, add the <em>&#64;ml_prompttag</em>, <em>&#64;ml_prompttag2</em> or <em>&#64;ml_prompttag3</em> tag to your <a class="reference internal" href="index.html#customprompt"><em>custom prompt</em></a>. The tags display the same information in different ways, so choose whichever one you&#8217;d like. If you&#8217;d like to modify a tag, the source code for them is available in the script for the addon - copy it into a new script (so it doesn&#8217;t get overwritten on an update) and feel free to tinker.</p>
+<p>If you just want to keep your prompt as-is, then you can use this:</p>
+<div class="highlight-lua"><pre>vconfig customprompt ^1@healthh, ^2@manam, ^5@endurancee, ^4@willpowerw ^W@eqbal@defs^b|@ml_prompttag^W- @affs</pre>
+</div>
+<p>You might also find this <a class="reference external" href="http://www.ironrealms.com/mud-scripts/example-hit-a-targetted-limb-alias">example targetting alias</a> useful for attacking with.</p>
+<div class="section" id="aliases">
+<h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-vsl">vsl</dt>
+<dd>Shows limb data of everything that the counter is keeping track of.</dd>
+<dt id="term-nn">nn</dt>
+<dd>Resets the limb data of the last hit person.</dd>
+<dt id="term-nn-person">nn <em>person</em></dt>
+<dd>Resets the limb data of a given <em>person</em>.</dd>
+<dt id="term-nn-t-h-rl-ll-ra-la">nn <em>t/h/rl/ll/ra/la</em></dt>
+<dd>Resets a specific limb of the last hit person.</dd>
+</dl>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-svo-limbcounter-hit-who-where-event">svo limbcounter hit (who, where) (event)</dt>
+<dd>This <a class="reference external" href="http://doc.svo.vadisystems.com/#event-use-examples">Mudlet event</a> goes off when you&#8217;ve hit someone&#8217;s limb. The event arguments include whom and where did you hit them.</dd>
+<dt id="term-svo-limbcounter-reset">svo limbcounter reset</dt>
+<dd>This event is raised when the limbcounter is reset (either fully, or only an a person, or a specific persons limb). You can then re-read the current <em>svo.ml_list</em> table to get the current values.</dd>
+<dt id="term-svo-ml-list-table">svo.ml_list (table)</dt>
+<dd><p class="first">A table containing all of the limbcounters tracking data - organized by named tables of people and their limb status, along with their breaking points.</p>
+<div class="last highlight-lua"><div class="highlight"><pre><span class="n">display</span><span class="p">(</span><span class="n">svo</span><span class="p">.</span><span class="n">ml_list</span><span class="p">)</span>
+
+<span class="cm">--[[yields, for example:</span>
+<span class="cm">table {</span>
+<span class="cm">  &#39;Person2&#39;: table {</span>
+<span class="cm">    &#39;ml_break_at&#39;: 10</span>
+<span class="cm">    &#39;rightleg&#39;: 0</span>
+<span class="cm">    &#39;leftleg&#39;: 4</span>
+<span class="cm">    &#39;torso&#39;: 0</span>
+<span class="cm">    &#39;leftarm&#39;: 0</span>
+<span class="cm">    &#39;rightarm&#39;: 0</span>
+<span class="cm">    &#39;head&#39;: 0</span>
+<span class="cm">  }</span>
+<span class="cm">  &#39;Person1&#39;: table {</span>
+<span class="cm">    &#39;ml_break_at&#39;: 10</span>
+<span class="cm">    &#39;rightleg&#39;: 0</span>
+<span class="cm">    &#39;leftleg&#39;: 0</span>
+<span class="cm">    &#39;torso&#39;: 4</span>
+<span class="cm">    &#39;leftarm&#39;: 0</span>
+<span class="cm">    &#39;rightarm&#39;: 0</span>
+<span class="cm">    &#39;head&#39;: 9</span>
+<span class="cm">  }</span>
+<span class="cm">}</span>
+<span class="cm">]]</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-svo-lasthit-string">svo.lasthit (string)</dt>
+<dd><p class="first">Stores the last hit persons name. You can use it to check a specific limb status in an alias, for example:</p>
+<div class="last highlight-lua"><div class="highlight"><pre><span class="n">echo</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%s&#39;s head is at %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">svo</span><span class="p">.</span><span class="n">lasthit</span><span class="p">,</span> <span class="n">svo</span><span class="p">.</span><span class="n">ml_list</span><span class="p">[</span><span class="n">svo</span><span class="p">.</span><span class="n">lasthit</span><span class="p">].</span><span class="n">head</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd>
+<dt id="term-svo-ml-prep-at-number">svo.ml_prep_at (number)</dt>
+<dd>Amount that new people&#8217;s that the limbcounter sees prep point is set to. Default is 4.</dd>
+<dt id="term-svo-ml-break-at-number">svo.ml_break_at (number)</dt>
+<dd>Amount that new people&#8217;s that the limbcounter sees breaking point is set to. Default is 5.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Svof Multi-Person Magi Limbcounter</a><ul>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="knightlimbcounter.html"
+                        title="previous chapter">Svof Multi-Person Knight Limbcounter</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="metalimbcounter.html"
+                        title="next chapter">Svof Multi-Person Meta Limbcounter</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/magilimbcounter.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="metalimbcounter.html" title="Svof Multi-Person Meta Limbcounter"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="knightlimbcounter.html" title="Svof Multi-Person Knight Limbcounter"
+             >previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Vadim Peretokin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

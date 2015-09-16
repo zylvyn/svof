@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Svof Refiller &mdash; Svof docs</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'test2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Svof docs" href="index.html" />
+    <link rel="next" title="Svof Rune Identifier" href="runeidentifier.html" />
+    <link rel="prev" title="Svof Priest Report" href="priestreport.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="runeidentifier.html" title="Svof Rune Identifier"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="priestreport.html" title="Svof Priest Report"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="svof-refiller">
+<h1>Svof Refiller<a class="headerlink" href="#svof-refiller" title="Permalink to this headline">¶</a></h1>
+<p>Refilling with this is extremely easy - the script automatically takes care of managing artefact vials and your refilling skill for you, as well as refilling <strong>all</strong> of the order in one go.</p>
+<p>The script automatically detects the number of fills to use (depending if you&#8217;re transcendent or not - please check AB for it to know!), doesn&#8217;t boil the pot if you&#8217;re missing an ingredient (but instead takes them out, and gets the pot and goes on to do the next potion), properly works where inpot requires doing more than 50 ingredients.</p>
+<p>Use of the refiller would be: do <strong>putvials</strong> to put all of your vials away, and have the customer hand you the vials. Do <strong>refill &lt;whole order, each potion separated with a comma&gt;</strong> to have it do all the heavy work for you. Then <strong>givevials &lt;customer&gt;</strong> to hand the vials back to them, and <strong>getvials</strong> to retrieve your own vials. Same thing if you&#8217;re refilling for yourself - put the vials away.</p>
+<div class="section" id="aliases">
+<h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-refill-what">refill &lt;what&gt;</dt>
+<dd><p class="first">Does your <strong>entire</strong> order - separate different potions with a comma, and if you&#8217;d like a certain amount of a potion to go into artefact vials, add &#8220;# arty&#8221; at the end. For example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- this will refill vials of health</span>
+<span class="n">refill</span> <span class="mi">5</span> <span class="n">health</span>
+
+<span class="c1">-- this will refill 3 normal vials and 2 artefact vials of health</span>
+<span class="n">refill</span> <span class="mi">5</span> <span class="n">health</span> <span class="mi">2</span> <span class="n">arty</span>
+
+<span class="c1">-- this will refill 5 health vials and 2 vials of caloric</span>
+<span class="n">refill</span> <span class="mi">5</span> <span class="n">health</span><span class="p">,</span> <span class="mi">2</span> <span class="n">caloric</span>
+
+<span class="c1">-- some other mixed order that just requires one command to do!</span>
+<span class="n">refill</span> <span class="mi">1</span> <span class="n">caloric</span><span class="p">,</span> <span class="mi">1</span> <span class="n">mass</span><span class="p">,</span> <span class="mi">1</span> <span class="n">health</span><span class="p">,</span> <span class="mi">3</span> <span class="n">mana</span><span class="p">,</span> <span class="mi">1</span> <span class="n">speed</span>
+</pre></div>
+</div>
+<p class="last">Take note that when doing artefact refills, you specify them as a portion of the potion - if you want 4 refills of health and 2 of them in artefact vials, you&#8217;d do <em>refill 4 health 2 arty</em>.</p>
+</dd>
+<dt id="term-refill-cancel">refill cancel</dt>
+<dd>Stops refilling right away.</dd>
+<dt id="term-vconfig-potid-pot-id">vconfig potid &lt;pot ID&gt;</dt>
+<dd>Sets the pot ID to brew things in. Set this to your own, in case there is someone else&#8217;s pot on the ground.</dd>
+<dt id="term-vconfig-packid-pack-id">vconfig packid &lt;pack ID&gt;</dt>
+<dd>Sets the back ID to store vials away into when you do &#8216;putvials&#8217; before taking on the customers vials. To get them out after, do &#8216;getvials&#8217;.</dd>
+<dt id="term-putvials">putvials</dt>
+<dd>Stuffs all of your current vials away into a container, so you can take the customers empty and artefact vials without them getting mixed in with yours. You should do this before they give you their vials.</dd>
+<dt id="term-getvials">getvials</dt>
+<dd>After you&#8217;ve given vials back with &#8216;givevials&#8217;, <em>getvials</em> will reclaim your vials from the container you hid them in.</dd>
+<dt id="term-givevials-person">givevials &lt;person&gt;</dt>
+<dd>Hands over all of your vials to another person.</dd>
+</dl>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-svo-done-refilling-event">svo done refilling (event)</dt>
+<dd>Raised when a successful refill is done. You can use this event, for example, to perform order cost calculations.</dd>
+<dt id="term-svo-rf-previousorder-table">svo.rf_previousorder (table)</dt>
+<dd><p class="first">Contains the details of the previous order that was completed - key names are the potions, and values are tables with &#8216;normal&#8217; and &#8216;arty&#8217; amounts, ie:</p>
+<div class="last highlight-lua"><div class="highlight"><pre><span class="n">svo</span><span class="p">.</span><span class="n">rf_previousorder</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">health</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">arty</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="n">mana</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">arty</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Svof Refiller</a><ul>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="priestreport.html"
+                        title="previous chapter">Svof Priest Report</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="runeidentifier.html"
+                        title="next chapter">Svof Rune Identifier</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/refiller.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="runeidentifier.html" title="Svof Rune Identifier"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="priestreport.html" title="Svof Priest Report"
+             >previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Vadim Peretokin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

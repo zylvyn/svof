@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Svof Priest Report &mdash; Svof docs</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     'test2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Svof docs" href="index.html" />
+    <link rel="next" title="Svof Refiller" href="refiller.html" />
+    <link rel="prev" title="Svof Multi-Person Priest Limbcounter" href="priestlimbcounter.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="refiller.html" title="Svof Refiller"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="priestlimbcounter.html" title="Svof Multi-Person Priest Limbcounter"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="svof-priest-report">
+<h1>Svof Priest Report<a class="headerlink" href="#svof-priest-report" title="Permalink to this headline">¶</a></h1>
+<p>This script helps you deal with seek and trace reporting as a Priest. It has two parts: tracing and reporting a persons movements on a channel, and responding to a seek request with information about the person and their companions.</p>
+<p>Seek reporting works automatically - whenever someone asks <strong>Locate person</strong> on party or a clan, the system will angel seek the person, and report back on the channel it was asked on - party or a specific clan - information about the person. You will need to add the short alias clan name to the &#8220;Seek request&#8221; trigger if it&#8217;s not there, though - because you can&#8217;t do clan &lt;long clan name&gt; tell in the game.</p>
+<div class="section" id="aliases">
+<h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-tr-person">tr &lt;person&gt;</dt>
+<dd>Starts tracing a person. By default, it&#8217;ll report their movements to party - and you can change it to report to a clan instead with vconfig ccto &lt;short clan name&gt;. You can find the short name of a clan by typing &#8216;clans&#8217;, the orange brackets denote it.</dd>
+<dt id="term-tr-off">tr off</dt>
+<dd>Stops tracing and reporting a persons movements.</dd>
+<dt id="term-vconfig-autoseek">vconfig autoseek</dt>
+<dd>Toggles whenever you respond to &#8216;locate&#8217; requests. It might be wise to turn it off when there&#8217;s someone with consistently quicker responses (ping) around.</dd>
+<dt id="term-vconfig-bettertrace">vconfig bettertrace</dt>
+<dd>Enables better trace reports that aim to spam you less and be more informative. If someone is speedwalking, the reports will happen for a bunch of rooms at once - so instead of getting 5 chats to pt that someone moved, it&#8217;ll instead be one, saying they moved five rooms. Where the person just moved one room and it is possible to determine the direction they have, the direction will be mentioned as well. Enabled by default.</dd>
+<dt id="term-vconfig-reportdelay">vconfig reportdelay #</dt>
+<dd>Adjusts the delay, in seconds, that bettertrace waits before mentioning how many rooms a person has moved. Set to 2 by default.</dd>
+<dt id="term-seek-person">seek &lt;person&gt;</dt>
+<dd>Manually locates a person and reports to wheever ccto is set to.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Svof Priest Report</a><ul>
+<li><a class="reference internal" href="#aliases">Aliases</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="priestlimbcounter.html"
+                        title="previous chapter">Svof Multi-Person Priest Limbcounter</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="refiller.html"
+                        title="next chapter">Svof Refiller</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/priestreport.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="refiller.html" title="Svof Refiller"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="priestlimbcounter.html" title="Svof Multi-Person Priest Limbcounter"
+             >previous</a> |</li>
+        <li><a href="index.html">Svof docs</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Vadim Peretokin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
